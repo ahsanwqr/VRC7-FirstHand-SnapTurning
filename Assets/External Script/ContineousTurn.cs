@@ -11,7 +11,7 @@ public class ContineousTurn : MonoBehaviour
         {
             transform.Rotate(Vector3.up * PlayerMovementSpeed * Time.deltaTime);
         }
-        if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft))
+       else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft))
         {
             transform.Rotate(Vector3.down * PlayerMovementSpeed * Time.deltaTime);
         }
