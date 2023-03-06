@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 
@@ -25,7 +23,7 @@ public class SimpleCapsuleWithStickMovement : MonoBehaviour
         if (CameraRig == null) CameraRig = GetComponentInChildren<OVRCameraRig>();
     }
 
-    void Start ()
+    void Start()
     {
 
     }
@@ -71,27 +69,30 @@ public class SimpleCapsuleWithStickMovement : MonoBehaviour
 
     void SnapTurn()
     {
-        if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft) ||
-            (RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickLeft)))
+        if (VerticalSnapTurn.Instance.count == 0)
         {
-            if (ReadyToSnapTurn)
+            if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft) ||
+                (RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickLeft)))
             {
-                ReadyToSnapTurn = false;
-                transform.RotateAround(CameraRig.centerEyeAnchor.position, Vector3.up, -RotationAngle);
+                if (ReadyToSnapTurn)
+                {
+                    ReadyToSnapTurn = false;
+                    transform.RotateAround(CameraRig.centerEyeAnchor.position, Vector3.up, -RotationAngle);
+                }
             }
-        }
-        else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight) ||
-            (RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight)))
-        {
-            if (ReadyToSnapTurn)
+            else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight) ||
+                (RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight)))
             {
-                ReadyToSnapTurn = false;
-                transform.RotateAround(CameraRig.centerEyeAnchor.position, Vector3.up, RotationAngle);
+                if (ReadyToSnapTurn)
+                {
+                    ReadyToSnapTurn = false;
+                    transform.RotateAround(CameraRig.centerEyeAnchor.position, Vector3.up, RotationAngle);
+                }
             }
-        }
-        else
-        {
-            ReadyToSnapTurn = true;
+            else
+            {
+                ReadyToSnapTurn = true;
+            }
         }
     }
 }

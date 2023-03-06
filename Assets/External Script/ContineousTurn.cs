@@ -7,13 +7,16 @@ public class ContineousTurn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight))
+        if (VerticalSnapTurn.Instance.count == 0)
         {
-            transform.Rotate(Vector3.up * PlayerMovementSpeed * Time.deltaTime);
-        }
-       else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft))
-        {
-            transform.Rotate(Vector3.down * PlayerMovementSpeed * Time.deltaTime);
+            if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight))
+            {
+                transform.Rotate(Vector3.up * PlayerMovementSpeed * Time.deltaTime);
+            }
+            else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft))
+            {
+                transform.Rotate(Vector3.down * PlayerMovementSpeed * Time.deltaTime);
+            }
         }
     }
 }
