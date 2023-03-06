@@ -657,21 +657,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   count: 0
   snaps:
-  - Name: Enable 0 degree
+  - Name: Disable Vertical Turn
     angle: 0
     maximumNoOfSnaps: 0
-  - Name: Enable 10 degree
-    angle: 10
-    maximumNoOfSnaps: 9
+  - Name: Enable 15 degree
+    angle: 15
+    maximumNoOfSnaps: 6
   - Name: Enable 20 degree
     angle: 20
     maximumNoOfSnaps: 4
+  - Name: Enable 25 degree
+    angle: 25
+    maximumNoOfSnaps: 3
   - Name: Enable 30 degree
     angle: 30
     maximumNoOfSnaps: 3
+  - Name: Enable 35 degree
+    angle: 35
+    maximumNoOfSnaps: 2
   - Name: Enable 40 degree
     angle: 40
-    maximumNoOfSnaps: 4
+    maximumNoOfSnaps: 2
+  - Name: Enable 45 degree
+    angle: 45
+    maximumNoOfSnaps: 2
   promtTex: {fileID: 523689273}
   bttonText: {fileID: 319979632}
   maximumNoOfSnaps: 0
@@ -1394,7 +1403,7 @@ GameObject:
   - component: {fileID: 607834429}
   - component: {fileID: 607834430}
   m_Layer: 0
-  m_Name: Movement (1)
+  m_Name: vertical Snap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1408,7 +1417,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 607834428}
   m_LocalRotation: {x: 0.18412259, y: 0.71781397, z: -0.16036196, w: 0.652017}
-  m_LocalPosition: {x: 0.6175, y: 0.3541, z: -1.6113}
+  m_LocalPosition: {x: 0.553, y: 0.389, z: -1.604}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3112,9 +3121,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MovementTypeManager, Assembly-CSharp
-        m_MethodName: ChangeMovementType
+      - m_Target: {fileID: 442597707}
+        m_TargetAssemblyTypeName: VerticalSnapTurn, Assembly-CSharp
+        m_MethodName: ChangeSnapAngle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3126,19 +3135,7 @@ MonoBehaviour:
         m_CallState: 2
   _whenUnselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 496503958}
-        m_TargetAssemblyTypeName: Oculus.Interaction.AudioTrigger, Oculus.Interaction.Samples
-        m_MethodName: PlayAudio
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _whenInteractorsCountUpdated:
     m_PersistentCalls:
       m_Calls: []

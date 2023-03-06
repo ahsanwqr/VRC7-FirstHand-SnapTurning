@@ -48,10 +48,15 @@ public class VerticalSnapTurn : MonoBehaviour
             snapIndex++;
             if (snapIndex >= snaps.Count)
             {
+
                 snapIndex = 0;
+                bttonText.text = "Disable";
+            }
+            else
+            {
+                bttonText.text = "Enable";
             }
             promtTex.text = snaps[snapIndex].Name;
-            bttonText.text = "Enable";
         }
     }
 
