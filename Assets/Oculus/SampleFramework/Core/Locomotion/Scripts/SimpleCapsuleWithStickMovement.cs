@@ -95,4 +95,23 @@ public class SimpleCapsuleWithStickMovement : MonoBehaviour
             }
         }
     }
+    public void GazeSnapTurn(bool isLeft)
+    {
+        if(ReadyToSnapTurn)
+        {
+            // if left turn button is pressed
+            if (isLeft)
+            {
+                ReadyToSnapTurn = false;
+                transform.RotateAround(CameraRig.centerEyeAnchor.position, Vector3.up, -RotationAngle);
+            }
+            // if Right turn button is pressed
+            else if(!isLeft)
+            {
+                ReadyToSnapTurn = false;
+                transform.RotateAround(CameraRig.centerEyeAnchor.position, Vector3.up, RotationAngle);
+            }
+        }
+        ReadyToSnapTurn = true;
+    }
 }
