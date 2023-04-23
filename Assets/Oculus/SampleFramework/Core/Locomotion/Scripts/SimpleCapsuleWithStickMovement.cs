@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 
@@ -25,7 +23,7 @@ public class SimpleCapsuleWithStickMovement : MonoBehaviour
         if (CameraRig == null) CameraRig = GetComponentInChildren<OVRCameraRig>();
     }
 
-    void Start ()
+    void Start()
     {
 
     }
@@ -48,7 +46,7 @@ public class SimpleCapsuleWithStickMovement : MonoBehaviour
         Vector3 prevPos = root.position;
         Quaternion prevRot = root.rotation;
 
-        transform.rotation = Quaternion.Euler(0.0f, centerEye.rotation.eulerAngles.y, 0.0f);
+        transform.rotation = Quaternion.Euler(centerEye.rotation.eulerAngles.x, centerEye.rotation.eulerAngles.y, 0.0f);
 
         root.position = prevPos;
         root.rotation = prevRot;
@@ -71,27 +69,49 @@ public class SimpleCapsuleWithStickMovement : MonoBehaviour
 
     void SnapTurn()
     {
-        if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft) ||
-            (RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickLeft)))
+        if (VerticalSnapTurn.Instance.count == 0)
         {
-            if (ReadyToSnapTurn)
+            if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft) ||
+                (RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickLeft)))
+            {
+                if (ReadyToSnapTurn)
+                {
+                    ReadyToSnapTurn = false;
+                    transform.RotateAround(CameraRig.centerEyeAnchor.position, Vector3.up, -RotationAngle);
+                }
+            }
+            else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight) ||
+                (RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight)))
+            {
+                if (ReadyToSnapTurn)
+                {
+                    ReadyToSnapTurn = false;
+                    transform.RotateAround(CameraRig.centerEyeAnchor.position, Vector3.up, RotationAngle);
+                }
+            }
+            else
+            {
+                ReadyToSnapTurn = true;
+            }
+        }
+    }
+    public void GazeSnapTurn(bool isLeft)
+    {
+        if(ReadyToSnapTurn)
+        {
+            // if left turn button is pressed
+            if (isLeft)
             {
                 ReadyToSnapTurn = false;
                 transform.RotateAround(CameraRig.centerEyeAnchor.position, Vector3.up, -RotationAngle);
             }
-        }
-        else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight) ||
-            (RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight)))
-        {
-            if (ReadyToSnapTurn)
+            // if Right turn button is pressed
+            else if(!isLeft)
             {
                 ReadyToSnapTurn = false;
                 transform.RotateAround(CameraRig.centerEyeAnchor.position, Vector3.up, RotationAngle);
             }
         }
-        else
-        {
-            ReadyToSnapTurn = true;
-        }
+        ReadyToSnapTurn = true;
     }
 }

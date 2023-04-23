@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ContineousTurn : MonoBehaviour
@@ -9,14 +7,16 @@ public class ContineousTurn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryThumbstickRight))
+        if (VerticalSnapTurn.Instance.count == 0)
         {
-            gameObject.transform.Translate(Vector3.forward * PlayerMovementSpeed * Time.deltaTime, Space.World);
-        }
-
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryThumbstickLeft))
-        {
-            gameObject.transform.Translate(Vector3.back * PlayerMovementSpeed * Time.deltaTime, Space.World);
+            if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight))
+            {
+                transform.Rotate(Vector3.up * PlayerMovementSpeed * Time.deltaTime);
+            }
+            else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft))
+            {
+                transform.Rotate(Vector3.down * PlayerMovementSpeed * Time.deltaTime);
+            }
         }
     }
 }
